@@ -1,0 +1,175 @@
+<!--Authors: B00285812-->
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name = "viewport" content = "initial-scale = 1" />
+		<meta name = "author" content = "Angelo Romel Lopez(B00285812)" />
+		<link rel="stylesheet" href="css/angelo_ice_blue.min.css" /><!--Custom theme CSS-->
+		<link rel="stylesheet" href="css/jquery.mobile.icons.min.css" /><!--JQuery Mobile CSS-->
+		<link rel="stylesheet" href="css/angelostruct.css" /><!--Structure for the custom theme.-->
+        <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script><!--JQuery library-->
+        <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script><!--JQuery Mobile library-->
+		<script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script><!--Firebase library-->
+        <script src="js/mainscript.js"></script><!--Main script-->
+        <script src="js/countrysymbol.js"></script><!--Country code list-->
+        <link rel = "stylesheet" href = "css/mainstyle.css" /><!--Main CSS-->
+	</head>
+
+	<body>
+		<!--Start Page-->
+		<div data-role = "page" id = "main">
+			<div data-role="header" style = "background-color: #FFFFFF;color: #515354; text-shadow: none;">
+				<h1>
+					Forecaster
+				</h1>
+			</div>
+
+			<div data-role = "content">
+				<div>
+					<img src="img/yellow_sun.png" alt="yellow happy sun :)" class="centerHorizontal" />
+					<br/>
+					<span style="text-align: center; display: block; margin-left: 10px; margin-right: 10px; font-size: 90%">
+						Pressing on the padlock icon will login you in to the Forecaster app so you can store and get your recent and saved locations across multiple devices including this one.
+					</span>
+				</div>
+			</div>
+
+			<div data-role = "footer" data-position = "fixed" class = "centerBtn">
+				<a href = "#userlogin" data-role = "button" class = "mainbutton">
+					<img src="img/lock.png" alt="login" />
+				</a>
+				<a href = "#weather" data-role="button" class = "mainbutton">
+					<img src="img/cloud_thunder_bolt.png" alt="#guest" />
+				</a>
+			</div>
+		</div>
+
+		<!--Login Page-->
+		<div data-role = "page" id = "userlogin">
+			<div data-role = "header" style = "background-color: #FFFFFF;color: #515354; text-shadow: none;">
+				<h1>
+					Login
+				</h1>
+			</div>
+
+			<div data-role = "content">
+				<p>
+					User Name
+					<input id = "eusername" type = "text" />
+					Password
+					<input id = "epassword" type = "password" />
+					<button id = "btnlogin" type = "submit">Login</button>
+				</p>
+				<a href="#register" class = "ui-btn">
+					Register a New Account
+				</a>
+			</div>
+
+			<div data-role = "footer" data-position = "fixed" class = "centerBtn">
+				<a href = "#main" data-role = "button"><img src = "img/refresh.png" /></a>
+			</div>
+		</div>
+
+		<!--Page that displays alert messages.-->
+		<div data-role = "page" id = "alert">
+            <div data-role = "header" style = "background-color: #FFFFFF;color: #515354; text-shadow: none;">
+                <h3>
+                	<div id = "alerttitle">
+                		Alert
+                	</div>
+                </h3>
+            </div>
+
+            <div data-role = "content">
+                <div id = "alertmessage"></div>
+            </div>
+
+            <div data-role = "footer" data-position = "fixed">
+                <a data-rel = "back" data-icon = "back" data-role = "button">OK</a>
+            </div>
+        </div>
+
+        <!--Main Weather Page-->
+		<div data-role = "page" id = "weather">
+			<div data-role = "panel" id = "mainPanel">
+				<p>
+					<ul data-role = "listview">
+						<li><a href = "javascript:void(0)" id = "login" class = "ui-btn ui-icon-lock ui-btn-icon-left" style = "background:#80827F;">Log in</a></li>
+						<li><a href = "javascript:void(0)" id = "logout" class = "ui-btn ui-icon-lock ui-btn-icon-left" style = "background:#80827F;">Log out</a></li>
+					</ul>
+				</p>
+				<p>
+					<br/>
+					<a href = "#searchcity" id = "searchcity" class = "ui-btn ui-icon-search ui-btn-icon-left">Search Cities</a>
+					<a href = "#weather" id = "currentlocation" data-rel = "close" class = "ui-btn ui-icon-location ui-btn-icon-left">Show Current Location</a>
+					<p class = "horizontalline"><!--An empty paragraph that will display a horizontal line.--></p>
+					<div style = "font-weight:normal;font-size:150%;">
+						My Locations:
+					</div>
+					<!--<ul id = "locationlist" data-role = "list-view" style = "margin-left:auto;margin-right:auto;text-align:center;displat:block;">-->
+					<ul id = "locationlist" data-role = "listview" data-inset = "true">
+						<!--locations will be added here.-->
+					</ul>
+				</p>
+			</div>
+
+			<div data-role = "header" style = "background-color: #FFFFFF;color: #515354; text-shadow: none;">
+				<h1>
+					Forecaster
+				</h1>
+				<a href = "#mainPanel" class = "ui-btn ui-corner-all ui-icon-bars ui-btn-icon-notext"></a>
+			</div>
+
+			<div data-role = "content">
+				<div>
+					<h1>
+						<span id = "cityname"></span>
+						<span id = "countrycode" style = "font-size: 70%;"></span>
+						<div id = "title" style = "font-size: 80%; font-weight:normal;">5 Day Weather Forecast</div>
+					</h1>
+				</div>
+				<ul id = "forecastlist" data-role = "list-view">
+				</ul>
+			</div>
+
+			<div data-role = "footer" class = "centerBtn">
+			</div>
+		</div>
+
+		<!--Search City Page-->
+		<div data-role = "page" id = "searchcity">
+			<div data-role = "header" style = "background-color: #FFFFFF;color: #515354; text-shadow: none;">
+				<h1>
+					Search Cities
+				</h1>
+			</div>
+
+			<div data-role = "content">
+				<select name = "country" id = "countrylist" data-native-menu = "false" /></select>
+				<input id = "selectedcity" type = "search" placeholder = "Enter City Name">
+				<button id = "btngetweather" class="ui-btn ui-icon-check ui-btn-icon-left ui-corner-all">OK</button>
+			</div>
+		</div>
+
+		<!--Register new account page-->
+		<div data-role = "page" id = "register">
+			<div data-role = "header" style = "background-color: #FFFFFF;color: #515354; text-shadow: none;">
+				<h1>
+					Register
+				</h1>
+			</div>
+
+			<div data-role = "content">
+				Choose a username
+				<input id = "newusername" type = "text">
+				Enter your password
+				<input id = "newpassword" type = "password">
+				Confirm your password
+				<input id = "confirmpassword" type = "password"><br/>
+				<button id = "btnregisteruser" class = "ui-btn">Submit</button>
+				<a id = "btncancelregisteruser" href = "#main" class = "ui-btn">Cancel</a>
+			</div>
+		</div>
+
+	</body>
+</html>

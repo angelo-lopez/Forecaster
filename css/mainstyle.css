@@ -1,0 +1,48 @@
+li{
+  list-style: none;
+}
+
+.ui-content, .ui-footer, .ui-panel{
+     text-shadow: none;
+}
+
+.mainbutton{
+    height: 60px;
+    width: 60px;
+}
+
+.centerHorizontal{
+   	display: block;
+    margin: auto;
+   	height: 55%;
+    width: 55%;
+}
+
+.centerBtn{
+    display:block;
+    text-align: center;
+}
+
+.horizontalline{
+	width: 99%;
+	height: 1px;
+	margin-right: auto;
+	margin-left: auto;
+	background-color: #CCCCCC;
+}
+
+::-webkit-input-placeholder {
+	color: white;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+	 color: white;
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+	color: white;
+}
+
+:-ms-input-placeholder {
+	color: white;
+}
