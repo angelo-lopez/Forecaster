@@ -1,6 +1,3 @@
-/**
-Author: B00285812
-*/
 //Array that holds location objects.
 var locationArray = new Array();
 //stores the city name and the country code that the user has selected from the location selection screen.
